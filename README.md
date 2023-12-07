@@ -1,4 +1,17 @@
-# Few shots learning LLM for Rrrelevance Classification
+<!-- <div style="text-align: center;"> -->
+**Repository link :** [https://github.com/Ad-Vi/few-shot-learning-LLM-for-irrelevance-classification](https://github.com/Ad-Vi/few-shot-learning-LLM-for-irrelevance-classification)
+<!-- </div> -->
+
+# Few shots learning LLM for Relevance Classification
+
+- [Dataset](#dataset)
+- [Implementation](#implementation)
+  - [Model](#model)
+  - [Low-Rank Adaptation (LoRA) - APPROACH 1](#low-rank-adaptation-lora---approach-1)
+  - [Model fine-tuning - APPROACH 2](#model-fine-tuning---approach-2)
+  - [Results](#results)
+- [Contributors:](#contributors)
+
 
 Project done in the scope of the course Web and Text Analytics given at the University of Liège in 2023. The approach taken is to fine-tune a small existing model using the dataset provided by the Teaching Staff.
 
@@ -39,6 +52,6 @@ At the end of the fine tuning :
 
 The team which contributes to this work is composed of :
 
-- [Dylan PROVOOST](https://github.com/Deimort)
 - [Cédric HONS](https://github.com/cedhons)
+- [Dylan PROVOOST](https://github.com/Deimort)
 - [Adrien VINDERS](https://github.com/Ad-Vi)
