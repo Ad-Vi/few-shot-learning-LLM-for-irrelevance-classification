@@ -1,28 +1,44 @@
-# few-shot-learning-LLM
+# Few shots learning LLM for Rrrelevance Classification
 
-Project done in the scope of the course Web and Text Analytics given at the University of Liège in 2023.
+Project done in the scope of the course Web and Text Analytics given at the University of Liège in 2023. The approach taken is to fine-tune a small existing model using the dataset provided by the Teaching Staff.
 
-## Statement  
+## Dataset
 
-Project LM2  
-Use an LLM for few-shot learning. The task is as follows:  
-In many instances, it is important to detect and remove irrelevant sentences from text. One
-example is that of generating graphs from text, where the presence of irrelevant sentences
-might complete distort the generated graphs. An application is that of generating business
-process models (graphs, petrinets, BPMN) from textual descriptions. The generated model
-should be a faithful reproduction of the textual description of the business process, without
-any irrelevant sentences, such as those providing general information about a company.
-However, there is a lack of training data, i.e. annotated with irrelevant sentences, to train
-supervised learning models. One solution is that of few-shot learning.  
-The aim is to use an LLM to learn about irrelevant sentences from sample texts. These
-irrelevant sentences can be indicated by various manners, .e.g. prompts to the LLMs or by
-annotating a handful of them.
-Then, the LLM should be able to automatically detect new irrelevant sentences.
-Project steps:
+The [dataset](data/WaTA_dataset.csv) is composed of 25112 sentences, each classified as being relevant to the context or not. The context of relevance is thus the whole dataset context (the 25112 sentences).
 
-- Choose an LLM, preferably open-source of reasonable size, e.g. Falcon7B (available
-from HuggingFace).
-- Prompt your LLM for the task described above using example sentences that will be
-provided to you.
-- Test on new sentences: report precision, recall, and F1 scores.
-- Fine-tune your LLM if needed, and test again.
+## Implementation
+
+### Model
+
+The model used is [distilbert-base-uncased](https://huggingface.co/distilbert-base-uncased). It offers the advantages of being small and thus possible to train with limited resources and having good performances in regards to other bigger transformer models.
+
+### Low-Rank Adaptation (LoRA) - APPROACH 1
+
+The principle of LoRA is to freeze the initial model parameters and to fine-tune additional parameters to adapt the model to a new task. This yields an adaptation of the initial model with a relatively low number of parameters to train.  
+
+![LoRA](images/LoRA.png)
+
+This first approach can be found in the [LoRA](distil-bert_lora.ipynb) notebook.
+
+### Model fine-tuning - APPROACH 2
+
+The second approach is to fine-tune the whole model using pytorch. This approach can be found in the [pytorch](distilbert-classifier.ipynb) notebook.
+
+### Results
+
+At the end of the fine tuning :
+
+| Method | Training Loss | Validation Loss | Accuracy | Precision | Recall | F1 |
+|-------|---------------|------------------|----------|-----------|--------|----|
+| LoRA    | 0.122800      | 0.493573         | 0.8918   | 0.9216    | 0.937  | 0.8566 |
+| Total Fine-tune    |       |          | 0.8918   | 0.88017    | 0.93848  | 0.90839 |
+
+
+
+## Contributors:
+
+The team which contributes to this work is composed of :
+
+- [Dylan PROVOOST](https://github.com/Deimort)
+- [Cédric HONS](https://github.com/cedhons)
+- [Adrien VINDERS](https://github.com/Ad-Vi)
